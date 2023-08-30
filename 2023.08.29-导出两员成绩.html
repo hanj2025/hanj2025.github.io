@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>两员成绩导出工具</title>
+    <head>
+      <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+        crossorigin="anonymous"
+      />
+      <script
+        src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"
+      ></script>
+    </head>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>
+          两员成绩导出工具<small
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;版本：v1.0</small
+          >
+        </h1>
+        <p>作者：韩杰</p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">处理数据</a>
+        </p>
+      </div>
+      <textarea
+        class="form-control"
+        rows="3"
+        placeholder="请在此处输入原始数据..."
+      ></textarea>
+      <br />
+      <p class="bg-success"></p>
+      <table class="table table-hover table-bordered">
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      var count = 0;
+      $("a").click(function () {
+        $(".bg-success").empty();
+        var dataArr = JSON.parse($("textarea").val()).data;
+        console.log(dataArr);
+        for (var i = 0; i < dataArr.length; i++) {
+          $("tbody").append(
+            "<tr><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.code"] +
+              "</td><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.role_text"] +
+              "</td><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.phone"] +
+              "</td><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.name"] +
+              "</td><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.test_name"] +
+              "</td><td>" +
+              dataArr[i]["fnecpeople_ledger_listdb.grade"] +
+              "</td></tr>"
+          );
+          count++;
+        }
+        $(".bg-success").append("共有" + count + "条数据");
+      });
+    </script>
+  </body>
+</html>
